@@ -6,6 +6,9 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: SITE_TITLE,
   description: SITE_DESCRIPTION,
+  verification: {
+  google: "arlwhC7OKuamafMC_Cjo1SsQe5FxI379PQ_NtKIEYhw",
+  },
   alternates: { canonical: "/" },
   icons: { icon: "/icon.svg", apple: "/apple-touch-icon.png" },
   openGraph: {
