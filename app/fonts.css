@@ -1,0 +1,25 @@
+/*
+  Fuentes locales (opcional). Descomentá y ajustá rutas cuando tengas los archivos.
+  Luego cambiá las variables en globals.css, por ejemplo:
+    --font-display: "Satoshi", var(--font-fallback);
+*/
+
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "General Sans";
+  src: url("/fonts/GeneralSans-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-display: swap;
+}
+/* /* @font-face {
+  font-family: "Neue Montreal";
+  src: url("/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+} */
