@@ -75,6 +75,9 @@ const ROUTES = [
   { path: "/sitemap.xml" },
   { path: "/diseno-web", h1: true, landing: true, lang: "es-AR" },
   { path: "/es/diseno-web", h1: true, landing: true, lang: "es-ES" },
+  { path: "/landing/estudio-aduanero-antes.webp" },
+  { path: "/landing/estudio-aduanero-despues.webp" },
+  { path: "/_next/image?url=%2Flanding%2Festudio-aduanero-despues.webp&w=1200&q=75" },
 ];
 /* Clases que esconden contenido hasta que corre JavaScript. */
 const HIDING = /\b(opacity-0|invisible|hidden|sr-only|mask)\b/;

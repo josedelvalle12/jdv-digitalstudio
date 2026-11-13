@@ -1,9 +1,11 @@
 import { whatsappUrl } from "@/content/landing/contact";
+import AboutSection from "./AboutSection";
 import LandingHero from "./LandingHero";
 import LandingNav from "./LandingNav";
 import MethodSection from "./MethodSection";
 import ProblemSection from "./ProblemSection";
 import TrustStrip from "./TrustStrip";
+import WorkSection from "./WorkSection";
 
 /**
  * Landing comercial. Componente de servidor: todo el contenido llega en el
@@ -23,6 +25,8 @@ export default function LandingPage({ content }) {
         <TrustStrip trust={content.trust} />
         <ProblemSection problem={content.problem} />
         <MethodSection method={content.method} />
+        <WorkSection work={content.work} />
+        <AboutSection about={content.about} />
       </main>
     </div>
   );

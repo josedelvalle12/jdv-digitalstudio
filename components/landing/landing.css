@@ -256,10 +256,93 @@
 .lp-tag--main { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
 .lp-step__text { line-height: 1.55; color: var(--lp-muted); }
 
+/* ---------- Trabajo: antes y después ---------- */
+.lp-compare { display: grid; gap: 1.5rem; margin-top: 3rem; }
+.lp-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--lp-line);
+  border-radius: .75rem;
+}
+.lp-shot__cap {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  margin-top: .85rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+.lp-shot__cap::before {
+  content: "";
+  width: .5rem;
+  height: .5rem;
+  flex: none;
+  border-radius: 999px;
+  background: rgb(var(--ink) / .3);
+}
+.lp-shot__cap--after { color: rgb(var(--ink)); }
+.lp-shot__cap--after::before { background: rgb(var(--acid)); box-shadow: 0 0 0 1.5px rgb(var(--ink)); }
+
+.lp-case { display: grid; gap: 2rem; margin-top: 3rem; }
+.lp-case__sector { margin-top: .4rem; color: var(--lp-muted); }
+.lp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  min-height: 2.75rem;
+  margin-top: 1rem;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: .25em;
+}
+.lp-link:hover { text-decoration-color: rgb(var(--acid)); text-decoration-thickness: 3px; }
+
+/* Lista de datos (caso y "Quién soy") */
+.lp-dl > div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 2fr) 5fr;
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--lp-line);
+}
+.lp-dl > div:last-child { border-bottom: 1px solid var(--lp-line); }
+.lp-dl dt {
+  padding-top: .15rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+.lp-dl dd { line-height: 1.55; }
+
+/* ---------- Quién soy ---------- */
+.lp-about { border-top: 1px solid var(--lp-line); }
+.lp-about__text {
+  max-width: 36rem;
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  line-height: 1.5;
+}
+.lp-about .lp-dl { margin-top: 2rem; }
+.lp-about__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: .75rem;
+}
+.lp-about__photo + div .lp-about__text { margin-top: 1.5rem; }
+
 /* ---------- Desktop ---------- */
 @media (min-width: 60rem) {
   .lp-split { grid-template-columns: 5fr 7fr; gap: 4rem; align-items: start; }
   .lp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .lp-compare { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-case { grid-template-columns: 5fr 7fr; gap: 4rem; }
 }
 
 /* ---------- Tablet ---------- */

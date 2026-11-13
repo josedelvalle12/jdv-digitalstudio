@@ -103,6 +103,44 @@ const es = {
     ],
     cta: "Cuéntame qué necesitas",
   },
+
+  /**
+   * Caso real (contado por Jose). Sin testimonio todavía: no se muestra
+   * ninguno. Imperium queda fuera: es un producto propio que no refleja el
+   * servicio que ofrece la landing.
+   */
+  work: {
+    label: "Trabajo reciente",
+    title: "De una web de plantilla a una que transmite confianza.",
+    name: "Estudio Aduanero Pablo L. Zecca",
+    sector: "Agente de aduanas · Buenos Aires, Argentina",
+    details: [
+      ["Qué necesitaba", "Su web estaba hecha con una plantilla y no transmitía la seriedad ni la trayectoria del estudio."],
+      ["Qué hice", "Un rediseño visual más premium y profesional, y una reorganización del contenido para que cada servicio se entienda más rápido."],
+      ["Mi papel", "Diseño y desarrollo"],
+    ],
+    before: {
+      caption: "Antes: web hecha con plantilla",
+      alt: "Inicio anterior de Estudio Aduanero, hecho con plantilla: foto de contenedores de fondo, texto pequeño y un formulario de newsletter en el centro.",
+    },
+    after: {
+      caption: "Después: rediseño",
+      alt: "Inicio rediseñado de Estudio Aduanero: fondo oscuro, titular grande «Comercio exterior, despachado con precisión.» y botones para ver servicios y contactar.",
+    },
+    link: "Ver el rediseño",
+  },
+
+  about: {
+    label: "Quién soy",
+    title: "Pequeño por diseño.",
+    text: "Soy Jose Del Valle. Trabajo de forma independiente: la persona con la que hablas es la que diseña y desarrolla tu web, y la que después gestiona tus campañas.",
+    facts: [
+      ["Base", "Buenos Aires, Argentina"],
+      ["Modalidad", "En remoto"],
+      ["Trabajo con", "Empresas y pequeños negocios"],
+    ],
+    photoAlt: "Jose Del Valle, diseñador y desarrollador web",
+  },
 };
 
 export default es;
