@@ -77,6 +77,8 @@ const ROUTES = [
   { path: "/sitemap.xml" },
   { path: "/diseno-web", h1: true, landing: true, lang: "es-AR", currency: "USD", foreign: "€" },
   { path: "/es/diseno-web", h1: true, landing: true, lang: "es-ES", currency: "€", foreign: "USD" },
+  { path: "/diseno-web/gracias", h1: true, noindex: true },
+  { path: "/es/diseno-web/gracias", h1: true, noindex: true },
   { path: "/landing/estudio-aduanero-antes.webp" },
   { path: "/landing/estudio-aduanero-despues.webp" },
   { path: "/_next/image?url=%2Flanding%2Festudio-aduanero-despues.webp&w=1200&q=75" },
@@ -119,7 +121,7 @@ function checkProtected() {
 
 /* ------------------------------------------------------------------ */
 /* Fuentes de la landing: se les exige el estilo de escritura acordado. */
-const LANDING_SOURCES = ["content/landing", "components/landing", "lib/landing.js", "app/(landing)", "middleware.js"];
+const LANDING_SOURCES = ["content/landing", "components/landing", "lib/landing.js", "app/(landing)", "app/api/contacto", "middleware.js"];
 
 function checkStyle() {
   section("2 · Estilo de la landing");
@@ -215,6 +217,11 @@ function checkHomeRegression() {
   const missing = cssRules(readFileSync(BASE_CSS, "utf8").replace(/\r/g, "")).filter((r) => !now.has(r));
   if (missing.length) fail(`${missing.length} reglas CSS de la home desaparecieron o cambiaron, p. ej.:\n    ${missing.slice(0, 5).join("\n    ")}`);
   else ok(`todas las reglas CSS de la línea de base siguen presentes (${now.size} reglas ahora)`);
+  // La landing no usa Tailwind: una regla nueva en la hoja global suele ser una palabra
+  // de app/ o components/ que Tailwind tomó por clase. No rompe la home, pero conviene saberlo.
+  const baseRules = new Set(cssRules(readFileSync(BASE_CSS, "utf8").replace(/\r/g, "")));
+  const added = [...now].filter((r) => !baseRules.has(r));
+  if (added.length) warn(`${added.length} reglas nuevas en la hoja global, p. ej.: ${added.slice(0, 3).join("  ")}`);
 }
 
 /* ------------------------------------------------------------------ */
@@ -264,10 +271,41 @@ function landingProblems(r, body) {
   return p;
 }
 
+/**
+ * Formulario (/api/contacto). El servidor de prueba corre sin RESEND_API_KEY,
+ * así que ningún caso envía un correo real.
+ */
+async function checkContactApi(base) {
+  const valid = { mercado: "ar", nombre: "Prueba", email: "prueba@example.com", necesidad: "Landing page", mensaje: "Hola" };
+  const cases = [
+    { name: "JSON con email inválido → 400", json: true, body: { ...valid, email: "no-es-email" }, status: 400 },
+    { name: "JSON con campo trampa (bot) → 200 sin enviar", json: true, body: { ...valid, sitio_web: "spam" }, status: 200 },
+    { name: "JSON válido sin RESEND_API_KEY → 503", json: true, body: valid, status: 503 },
+    { name: "Sin JS, datos inválidos (ES) → 303 al formulario con error", json: false, body: { ...valid, mercado: "es", nombre: "" }, status: 303, location: "/es/diseno-web#contacto-error" },
+    { name: "Sin JS, bot (AR) → 303 a gracias", json: false, body: { ...valid, sitio_web: "spam" }, status: 303, location: "/diseno-web/gracias" },
+  ];
+  for (const c of cases) {
+    const res = await fetch(`${base}/api/contacto`, {
+      method: "POST",
+      redirect: "manual",
+      headers: { "Content-Type": c.json ? "application/json" : "application/x-www-form-urlencoded" },
+      body: c.json ? JSON.stringify(c.body) : new URLSearchParams(c.body),
+    });
+    const location = res.headers.get("location") || "";
+    if (res.status !== c.status || (c.location && location !== c.location)) {
+      fail(`/api/contacto · ${c.name}: hubo ${res.status} ${location}`);
+    } else ok(`/api/contacto · ${c.name}`);
+  }
+}
+
 async function checkRoutes() {
   section(`4 · Humo sobre next start (puerto ${PORT})`);
   const nextBin = join(ROOT, "node_modules", "next", "dist", "bin", "next");
-  const child = spawn(process.execPath, [nextBin, "start", "-p", String(PORT)], { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] });
+  const child = spawn(process.execPath, [nextBin, "start", "-p", String(PORT)], {
+    cwd: ROOT,
+    stdio: ["ignore", "pipe", "pipe"],
+    env: { ...process.env, RESEND_API_KEY: "" },                               // nunca enviar correos en la prueba
+  });
   let log = "";
   child.stdout.on("data", (d) => (log += d));
   child.stderr.on("data", (d) => (log += d));
@@ -285,11 +323,15 @@ async function checkRoutes() {
       }
       if (res.status !== 200) { fail(`${r.path} → ${res.status}`); continue; }
       if (r.h1 && (body.match(/<h1[\s>]/g) || []).length !== 1) { fail(`${r.path}: se esperaba exactamente un <h1>`); continue; }
+      if (r.noindex && !/noindex/i.test(robotsMeta(body))) { fail(`${r.path}: se esperaba noindex`); continue; }
       const problems = r.landing ? landingProblems(r, body) : [];
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
-      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : ""}`);
+      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : r.noindex ? " · noindex" : ""}`);
     }
-    if (/error/i.test(log)) fail(`el servidor registró errores:\n${log}`);
+    await checkContactApi(base);
+    // Los avisos propios del formulario ([contacto]) son esperables en la prueba; cualquier otro error, no.
+    const serverLog = log.split("\n").filter((l) => !l.includes("[contacto]")).join("\n");
+    if (/error/i.test(serverLog)) fail(`el servidor registró errores:\n${serverLog}`);
   } finally {
     stop(child);
   }

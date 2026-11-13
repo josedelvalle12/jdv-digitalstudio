@@ -209,6 +209,82 @@ const ar = {
     ],
     photoAlt: "Jose Del Valle, diseñador y desarrollador web",
   },
+
+  /**
+   * Respuestas con datos confirmados por Jose: dominio y hosting los paga el
+   * cliente; los cambios entran en el plan mensual; soporte de 14 días
+   * (contrato, cláusula 10); pago en dos partes (cláusula 4.2).
+   */
+  faq: {
+    label: "Preguntas frecuentes",
+    title: "Lo que suelen preguntarme antes de empezar.",
+    items: [
+      {
+        q: "¿Cuánto cuesta y cómo se paga?",
+        a: "Los precios de referencia están más arriba. Después de la charla inicial recibís una propuesta por escrito con el monto exacto. Se paga en dos partes: al inicio y antes de publicar.",
+      },
+      {
+        q: "¿El dominio y el hosting están incluidos?",
+        a: "No. Se contratan a tu nombre y los pagás directamente vos. Te ayudo a elegirlos y a configurarlos, y quedan siempre bajo tu titularidad.",
+      },
+      {
+        q: "¿Puedo actualizar la web yo mismo?",
+        a: "Los cambios los hago yo dentro del plan mensual, así no tenés que ocuparte de la parte técnica. Si vas a actualizar contenido seguido, en un sitio a medida se puede sumar un gestor de contenidos.",
+      },
+      {
+        q: "¿Qué necesito para empezar?",
+        a: "Contarme a qué se dedica tu negocio, a quién le vende y qué querés lograr con la web. Con eso preparo la propuesta.",
+      },
+      {
+        q: "¿Qué pasa después de publicar?",
+        a: "Tenés 14 días de soporte para corregir errores y hacer ajustes menores. Después, si querés, seguimos con el plan mensual de mantenimiento y mejoras.",
+      },
+      {
+        q: "¿Garantizás resultados con Google Ads?",
+        a: "No. Nadie puede garantizarlos con seriedad. Lo que sí te garantizo es medición clara, un reporte cada mes y acceso total a tu cuenta.",
+      },
+      {
+        q: "¿Cuánto hay que invertir en publicidad?",
+        a: "Depende del rubro y de la zona. Antes de empezar reviso cuánto cuesta cada clic en tus búsquedas y te propongo un presupuesto inicial. Ese dinero lo pagás directo a Google.",
+      },
+    ],
+  },
+
+  contact: {
+    label: "Contacto",
+    title: "Contame qué necesitás y te respondo con una propuesta concreta.",
+    response: "Te respondo en menos de 24 horas hábiles.",
+    direct: "¿Preferís escribir directo?",
+    whatsapp: "Escribime por WhatsApp",
+  },
+
+  form: {
+    name: "Nombre",
+    email: "Email",
+    phone: "WhatsApp (opcional)",
+    need: "¿Qué necesitás?",
+    needOptions: ["Sitio nuevo", "Rediseño", "Landing page", "Google Ads", "No estoy seguro"],
+    message: "Contame un poco más (opcional)",
+    messagePlaceholder: "Por ejemplo: a qué se dedica tu negocio y qué te gustaría lograr.",
+    submit: "Enviar consulta",
+    sending: "Enviando...",
+    privacy: "Uso tus datos solo para responder tu consulta.",
+    error: "No se pudo enviar la consulta. Probá de nuevo o escribime por WhatsApp.",
+  },
+
+  /** Página de gracias (/diseno-web/gracias): destino del formulario y conversión. */
+  thanks: {
+    title: "Gracias, recibí tu consulta.",
+    text: "Te respondo en menos de 24 horas hábiles al email que dejaste.",
+    whatsapp: "Si es urgente, escribime por WhatsApp",
+    back: "Volver a la página",
+  },
+
+  footer: {
+    tagline: "Estudio independiente de Jose Del Valle.",
+    location: "Buenos Aires, Argentina",
+    rights: "Todos los derechos reservados.",
+  },
 };
 
 export default ar;

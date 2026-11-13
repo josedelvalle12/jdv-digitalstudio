@@ -6,9 +6,9 @@
  */
 export const CONTACT = {
   /** Solo dígitos, con código de país y sin "+", p. ej. 5491100000000. */
-  whatsapp: "",
+  whatsapp: "5491138198682", // +54 9 11 3819-8682 (formato wa.me: 54 + 9 + área sin 0 + número sin 15)
   /** Publicar solo cuando el dominio ya reciba correo (probado desde afuera). */
-  email: "",
+  email: "hola@josedelvalle.dev",
 };
 
 /** Enlace de WhatsApp con mensaje inicial, o null si no hay número. */

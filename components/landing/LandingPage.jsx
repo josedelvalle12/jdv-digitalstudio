@@ -1,8 +1,12 @@
 import { whatsappUrl } from "@/content/landing/contact";
 import AboutSection from "./AboutSection";
+import ContactSection from "./ContactSection";
+import FaqSection from "./FaqSection";
+import LandingFooter from "./LandingFooter";
 import LandingHero from "./LandingHero";
 import LandingNav from "./LandingNav";
 import MethodSection from "./MethodSection";
+import MobileBar from "./MobileBar";
 import ProblemSection from "./ProblemSection";
 import ProcessSection from "./ProcessSection";
 import ServicesSection from "./ServicesSection";
@@ -10,12 +14,11 @@ import TrustStrip from "./TrustStrip";
 import WorkSection from "./WorkSection";
 
 /**
- * Landing comercial. Componente de servidor: todo el contenido llega en el
- * HTML inicial y es visible sin JavaScript.
+ * Landing comercial. Componentes de servidor salvo el formulario: todo el
+ * contenido llega en el HTML inicial y es visible sin JavaScript.
  *
  * No usa Cursor, SmoothScroll, WebGL ni utilidades de Tailwind: los estilos
  * viven en landing.css con prefijo lp- para no alterar la hoja de la home.
- * Las secciones se suman por etapas.
  */
 export default function LandingPage({ content }) {
   const whatsapp = whatsappUrl(content.whatsappText);
@@ -31,7 +34,11 @@ export default function LandingPage({ content }) {
         <ServicesSection services={content.services} />
         <ProcessSection process={content.process} />
         <AboutSection about={content.about} />
+        <FaqSection faq={content.faq} />
+        <ContactSection content={content} whatsapp={whatsapp} />
       </main>
+      <LandingFooter footer={content.footer} whatsapp={whatsapp} />
+      <MobileBar nav={content.nav} whatsapp={whatsapp} />
     </div>
   );
 }
