@@ -4,6 +4,8 @@ import LandingHero from "./LandingHero";
 import LandingNav from "./LandingNav";
 import MethodSection from "./MethodSection";
 import ProblemSection from "./ProblemSection";
+import ProcessSection from "./ProcessSection";
+import ServicesSection from "./ServicesSection";
 import TrustStrip from "./TrustStrip";
 import WorkSection from "./WorkSection";
 
@@ -26,6 +28,8 @@ export default function LandingPage({ content }) {
         <ProblemSection problem={content.problem} />
         <MethodSection method={content.method} />
         <WorkSection work={content.work} />
+        <ServicesSection services={content.services} />
+        <ProcessSection process={content.process} />
         <AboutSection about={content.about} />
       </main>
     </div>

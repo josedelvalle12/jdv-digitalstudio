@@ -130,6 +130,75 @@ const es = {
     link: "Ver el rediseño",
   },
 
+  /**
+   * Base copiada de la sección Servicios de la home (descripciones y listas),
+   * con nombres concretos y los mismos importes en euros. A revisar con Jose.
+   * Google Ads y plan mensual: precio todavía sin definir.
+   * Pendiente: aclarar si los precios llevan IVA y cómo se factura a España.
+   */
+  services: {
+    label: "Servicios e inversión",
+    title: "Elige la escala de tu proyecto.",
+    intro: "Precios de referencia en euros (EUR). Cada presupuesto se prepara según tu negocio, con alcance, plazos e inversión por escrito.",
+    fromLabel: "Desde",
+    timeLabel: "Plazo",
+    listLabel: "Qué abarca",
+    cta: "Pedir presupuesto",
+    tiers: [
+      {
+        name: "Landing page",
+        price: "500 €",
+        description: "Para necesidades digitales concretas.",
+        time: "1-2 semanas",
+        items: ["Landing pages", "Lanzamientos", "Nuevos servicios", "Campañas"],
+      },
+      {
+        name: "Web para empresas",
+        price: "900 €",
+        description: "Para empresas listas para replantear su presencia digital.",
+        time: "Según alcance",
+        items: ["Rediseño web", "Webs corporativas", "UX/UI", "Desarrollo", "Analítica", "SEO técnico básico"],
+      },
+      {
+        name: "Web a medida",
+        price: "1.200 €",
+        description: "Para experiencias digitales más complejas.",
+        time: "Según alcance",
+        items: ["Integraciones", "CMS", "CRM", "Automatizaciones", "Contenido dinámico", "Interacciones avanzadas"],
+      },
+    ],
+    addonsLabel: "Complementos",
+    addons: [
+      {
+        name: "Google Ads",
+        price: "A consultar",
+        description: "Configuración de campañas de búsqueda y del seguimiento de conversiones, y gestión mensual con informe.",
+        note: "La inversión en anuncios la pagas aparte, directamente a Google, desde tu propia cuenta.",
+      },
+      {
+        name: "Plan mensual",
+        price: "A consultar",
+        description: "Mantenimiento de la web, cambios menores, revisión de datos y mejoras, con un informe cada mes.",
+      },
+    ],
+    footnote: "Cada proyecto se define alrededor del negocio, no de una lista rígida de funcionalidades.",
+  },
+
+  /** Base: sección Proceso de la home, resumida a 5 pasos. */
+  process: {
+    label: "Proceso",
+    title: "De la primera conversación al lanzamiento.",
+    steps: [
+      { title: "Primera conversación", text: "Conozco tu negocio, tu público y qué tiene que conseguir la web." },
+      { title: "Presupuesto", text: "Te envío alcance, plazos e inversión por escrito." },
+      { title: "Diseño", text: "Estructura primero, diseño después. Lo revisas y ajustamos antes de desarrollar." },
+      { title: "Desarrollo y pruebas", text: "Construyo la web y la pruebo en móvil y ordenador." },
+      { title: "Lanzamiento", text: "Publicación, medición configurada y últimos ajustes." },
+    ],
+    note: "En una landing, la conversación, el presupuesto y el diseño ocupan la primera semana, y el desarrollo la segunda.",
+    closing: "Alcance claro. Comunicación clara. Sin sorpresas.",
+  },
+
   about: {
     label: "Quién soy",
     title: "Pequeño por diseño.",

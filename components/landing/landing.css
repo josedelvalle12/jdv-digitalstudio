@@ -321,6 +321,107 @@
 }
 .lp-dl dd { line-height: 1.55; }
 
+/* ---------- Servicios ---------- */
+.lp-services { border-top: 1px solid var(--lp-line); }
+.lp-tiers { display: grid; gap: 1rem; margin-top: 3rem; }
+.lp-tier {
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem;
+  border: 1px solid var(--lp-line);
+  border-radius: 1rem;
+  background: rgb(var(--paper));
+}
+.lp-tier__desc { margin-top: .5rem; line-height: 1.5; color: var(--lp-muted); }
+.lp-tier__price {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--lp-line);
+}
+.lp-tier__from,
+.lp-tier__time span,
+.lp-tier__list-label {
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+.lp-tier__amount {
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(1.875rem, 3vw, 2.375rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.lp-tier__time { margin-top: .75rem; }
+.lp-tier__time span { margin-right: .4rem; }
+.lp-tier__list { flex: 1; margin-top: 1.5rem; }        /* empuja el botón al pie: alineado entre tarjetas */
+.lp-tier__list ul { display: grid; gap: .45rem; margin-top: .75rem; }
+.lp-tier__list li { display: flex; gap: .6rem; line-height: 1.4; }
+.lp-tier__list li::before { content: "+"; font-family: var(--font-mono); color: var(--lp-muted); }
+.lp-tier__cta { margin-top: 2rem; }
+
+.lp-addons__label {
+  margin-top: 3.5rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+.lp-addons { display: grid; gap: 1rem; margin-top: 1rem; }
+.lp-addon {
+  padding: 1.5rem 1.75rem;
+  border: 1px dashed rgb(var(--ink) / .35);
+  border-radius: 1rem;
+}
+.lp-addon__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.lp-addon__desc { margin-top: .6rem; line-height: 1.55; }
+.lp-addon__note { margin-top: .6rem; font-size: .9375rem; line-height: 1.5; color: var(--lp-muted); }
+.lp-services__foot { margin-top: 2.5rem; max-width: 36rem; color: var(--lp-muted); }
+
+/* ---------- Proceso ---------- */
+.lp-process { border-top: 1px solid var(--lp-line); }
+.lp-process__steps { display: grid; margin-top: 3rem; }
+.lp-process__step {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  column-gap: 1rem;
+  padding-block: 1.25rem;
+  border-top: 1px solid var(--lp-line);
+}
+.lp-process__step .lp-h3,
+.lp-process__text { grid-column: 2; }
+.lp-process__n {
+  grid-row: 1 / span 2;
+  padding-top: .3rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  color: var(--lp-muted);
+}
+.lp-process__text { margin-top: .4rem; line-height: 1.55; color: var(--lp-muted); }
+.lp-process__note {
+  margin-top: 2rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid rgb(var(--acid));
+  background: rgb(var(--stage));
+  max-width: 44rem;
+  line-height: 1.5;
+}
+.lp-process__closing {
+  margin-top: 2.5rem;
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
 /* ---------- Quién soy ---------- */
 .lp-about { border-top: 1px solid var(--lp-line); }
 .lp-about__text {
@@ -343,6 +444,13 @@
   .lp-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
   .lp-compare { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lp-case { grid-template-columns: 5fr 7fr; gap: 4rem; }
+  .lp-tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .lp-addons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .lp-process__steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; }
+  .lp-process__step { grid-template-columns: 1fr; align-content: start; }
+  .lp-process__n { grid-row: auto; padding-top: 0; }
+  .lp-process__step .lp-h3, .lp-process__text { grid-column: auto; }
+  .lp-process__step .lp-h3 { margin-top: .75rem; }
 }
 
 /* ---------- Tablet ---------- */

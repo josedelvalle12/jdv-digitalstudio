@@ -130,6 +130,74 @@ const ar = {
     link: "Ver el rediseño",
   },
 
+  /**
+   * Base copiada de la sección Servicios de la home (descripciones y listas),
+   * con nombres concretos y moneda explícita. A revisar con Jose.
+   * Google Ads y plan mensual: precio todavía sin definir.
+   */
+  services: {
+    label: "Servicios e inversión",
+    title: "Elegí la escala de tu proyecto.",
+    intro: "Precios de referencia en dólares (USD). Cada propuesta se arma según tu negocio, con alcance, plazos e inversión por escrito.",
+    fromLabel: "Desde",
+    timeLabel: "Plazo",
+    listLabel: "Qué abarca",
+    cta: "Pedir presupuesto",
+    tiers: [
+      {
+        name: "Landing page",
+        price: "USD 500",
+        description: "Para necesidades digitales concretas.",
+        time: "1-2 semanas",
+        items: ["Landing pages", "Lanzamientos", "Nuevos servicios", "Campañas"],
+      },
+      {
+        name: "Sitio web para empresas",
+        price: "USD 900",
+        description: "Para empresas listas para replantear su presencia digital.",
+        time: "Según alcance",
+        items: ["Rediseño web", "Sitios corporativos", "UX/UI", "Desarrollo", "Analytics", "SEO técnico básico"],
+      },
+      {
+        name: "Sitio a medida",
+        price: "USD 1.200",
+        description: "Para experiencias digitales más complejas.",
+        time: "Según alcance",
+        items: ["Integraciones", "CMS", "CRM", "Automatizaciones", "Contenido dinámico", "Interacciones avanzadas"],
+      },
+    ],
+    addonsLabel: "Complementos",
+    addons: [
+      {
+        name: "Google Ads",
+        price: "A cotizar",
+        description: "Configuración de campañas de búsqueda y del seguimiento de conversiones, y gestión mensual con reporte.",
+        note: "La inversión en anuncios la pagás aparte, directo a Google, desde tu propia cuenta.",
+      },
+      {
+        name: "Plan mensual",
+        price: "A cotizar",
+        description: "Mantenimiento del sitio, cambios menores, revisión de datos y mejoras, con un reporte cada mes.",
+      },
+    ],
+    footnote: "Cada proyecto se define alrededor del negocio, no de una lista rígida de funcionalidades.",
+  },
+
+  /** Base: sección Proceso de la home, resumida a 5 pasos. */
+  process: {
+    label: "Proceso",
+    title: "De la primera charla al lanzamiento.",
+    steps: [
+      { title: "Charla inicial", text: "Conozco tu negocio, tu público y qué tiene que lograr la web." },
+      { title: "Propuesta", text: "Te envío alcance, plazos e inversión por escrito." },
+      { title: "Diseño", text: "Estructura primero, diseño después. Lo revisás y ajustamos antes de desarrollar." },
+      { title: "Desarrollo y pruebas", text: "Construyo el sitio y lo pruebo en celular y computadora." },
+      { title: "Lanzamiento", text: "Publicación, medición configurada y últimos ajustes." },
+    ],
+    note: "En una landing, la charla, la propuesta y el diseño llevan la primera semana, y el desarrollo la segunda.",
+    closing: "Alcance claro. Comunicación clara. Sin sorpresas.",
+  },
+
   about: {
     label: "Quién soy",
     title: "Pequeño por diseño.",

@@ -75,8 +75,8 @@ const ROUTES = [
   { path: "/?gclid=prueba&utm_source=google", redirect: "/diseno-web?gclid=prueba&utm_source=google" },
   { path: "/robots.txt" },
   { path: "/sitemap.xml" },
-  { path: "/diseno-web", h1: true, landing: true, lang: "es-AR" },
-  { path: "/es/diseno-web", h1: true, landing: true, lang: "es-ES" },
+  { path: "/diseno-web", h1: true, landing: true, lang: "es-AR", currency: "USD", foreign: "€" },
+  { path: "/es/diseno-web", h1: true, landing: true, lang: "es-ES", currency: "€", foreign: "USD" },
   { path: "/landing/estudio-aduanero-antes.webp" },
   { path: "/landing/estudio-aduanero-despues.webp" },
   { path: "/_next/image?url=%2Flanding%2Festudio-aduanero-despues.webp&w=1200&q=75" },
@@ -258,6 +258,9 @@ function landingProblems(r, body) {
   const pending = [...new Set([...markup.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]))].filter((id) => !ids.has(id));
   if (pending.length) warn(`${r.path}: enlaces internos sin destino todavía: #${pending.join(", #")}`);
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
+  const visible = markup.replace(/<[^>]+>/g, " ");
+  if (!visible.includes(r.currency)) p.push(`no aparece la moneda del mercado (${r.currency})`);
+  if (visible.includes(r.foreign)) p.push(`aparece la moneda del otro mercado (${r.foreign})`);
   return p;
 }
 
@@ -284,7 +287,7 @@ async function checkRoutes() {
       if (r.h1 && (body.match(/<h1[\s>]/g) || []).length !== 1) { fail(`${r.path}: se esperaba exactamente un <h1>`); continue; }
       const problems = r.landing ? landingProblems(r, body) : [];
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
-      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang" : ""}`);
+      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : ""}`);
     }
     if (/error/i.test(log)) fail(`el servidor registró errores:\n${log}`);
   } finally {
