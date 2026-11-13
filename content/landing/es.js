@@ -17,11 +17,38 @@ const es = {
     ogLocale: "es_ES",
   },
 
+  nav: {
+    cta: "Pedir presupuesto",
+    whatsapp: "WhatsApp",
+  },
+
   hero: {
     eyebrow: "Diseño y desarrollo web · Google Ads — Estudio independiente",
     title: "Diseño web para empresas que necesitan más clientes, no solo una web bonita.",
     subtitle:
       "Diseño y desarrollo tu web para que explique bien lo que haces y lleve a cada visita a contactarte. Y si quieres tráfico desde el primer día, también configuro y gestiono tus campañas de Google Ads.",
+    primary: "Pedir presupuesto",
+    secondary: "Escribir por WhatsApp",
+    note: "Sin compromiso. Recibes una propuesta por escrito con alcance, plazos e inversión.",
+  },
+
+  /** Mensaje con el que se abre WhatsApp. */
+  whatsappText: "Hola Jose, he visto tu web y quiero pedir presupuesto.",
+
+  /**
+   * Franja de confianza. Cada punto sale del contrato o la propuesta reales:
+   * contrato cláusulas 4.2 (pago), 10.1 (soporte) y 11 (titularidad).
+   * Plazos de entrega: pendientes de confirmar, no se publican todavía.
+   */
+  trust: {
+    label: "Cómo trabajo",
+    items: [
+      "Trato directo con quien diseña y desarrolla tu web",
+      "Presupuesto y contrato por escrito",
+      "Pago en dos partes: al inicio y antes de publicar",
+      "14 días de soporte después de publicar",
+      "Dominio, hosting y cuentas a tu nombre",
+    ],
   },
 };
 

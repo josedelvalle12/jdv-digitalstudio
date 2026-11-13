@@ -80,6 +80,7 @@ const HIDING = /\b(opacity-0|invisible|hidden|sr-only|mask)\b/;
 
 let failures = 0;
 const ok = (msg) => console.log(`  ✓ ${msg}`);
+const warn = (msg) => console.log(`  ! ${msg}`);
 const fail = (msg) => { failures++; console.log(`  ✗ ${msg}`); };
 const section = (t) => console.log(`\n${t}`);
 const git = (...args) => execFileSync("git", args, { cwd: ROOT, encoding: "utf8" }).trim();
@@ -230,7 +231,13 @@ function landingProblems(r, body) {
     if (!re.test(body)) p.push(`falta hreflang ${lang} → ${site + path}`);
   }
   if (!/noindex/i.test(robotsMeta(body))) p.push(`se esperaba noindex hasta el lanzamiento, hay "${robotsMeta(body)}"`);
-  if (!new RegExp(`<main[^>]*lang="${r.lang}"`).test(body)) p.push(`falta lang="${r.lang}" en <main>`);
+  if (!new RegExp(`<div class="lp" lang="${r.lang}"`).test(body)) p.push(`falta lang="${r.lang}" en el contenedor .lp`);
+  const markup = body.replace(/<script[\s\S]*?<\/script>/g, "");
+  const hidden = [...markup.matchAll(/<[a-z0-9]+[^>]*class="([^"]*)"/g)].map((m) => m[1]).filter((c) => HIDING.test(c));
+  if (hidden.length) p.push(`elementos que nacen ocultos: ${hidden.join(" | ")}`);
+  const ids = new Set([...markup.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+  const pending = [...new Set([...markup.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]))].filter((id) => !ids.has(id));
+  if (pending.length) warn(`${r.path}: enlaces internos sin destino todavía: #${pending.join(", #")}`);
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
   return p;
 }
