@@ -53,6 +53,56 @@ const es = {
       "Landing lista en 1-2 semanas",
     ],
   },
+
+  problem: {
+    label: "El problema",
+    title: "Tener una web no basta si no te trae clientes.",
+    intro:
+      "Muchas webs de empresa cumplen con estar, pero no ayudan a vender. Suele pasar por alguna de estas razones:",
+    points: [
+      {
+        title: "No se entiende qué ofreces",
+        text: "Quien entra tiene que adivinar en qué puedes ayudarle, y en los primeros segundos decide si se queda.",
+      },
+      {
+        title: "No dice qué hacer después",
+        text: "Se ve bien, pero no hay un camino claro para escribirte o pedir presupuesto.",
+      },
+      {
+        title: "En el móvil cuesta usarla",
+        text: "Carga lenta, el texto es pequeño o los botones no se encuentran.",
+      },
+      {
+        title: "La publicidad lleva a una página que no convierte",
+        text: "Pagas cada clic, pero la página no está pensada para que esa visita te contacte.",
+      },
+    ],
+  },
+
+  /** Web como servicio principal; Google Ads y plan mensual como continuación. */
+  method: {
+    label: "Cómo te ayudo",
+    title: "Un solo responsable para todo el recorrido.",
+    intro: "Hablas con la misma persona desde la primera conversación hasta el informe de cada mes.",
+    steps: [
+      {
+        tag: "Servicio principal",
+        title: "Una web que explica y convierte",
+        text: "Diseño y desarrollo tu web para que se entienda rápido, funcione bien en el móvil y lleve a cada visita a escribirte o pedir presupuesto.",
+      },
+      {
+        tag: "Complemento",
+        title: "Tráfico de gente que ya busca lo que ofreces",
+        text: "Si quieres acelerar, configuro y gestiono campañas de búsqueda en Google Ads que llevan a esa web, con la medición de contactos lista desde el primer día.",
+      },
+      {
+        tag: "Plan mensual",
+        title: "Medición y mejora mes a mes",
+        text: "Con datos reales de visitas y contactos ajusto textos, secciones y campañas, y te envío un informe claro cada mes.",
+      },
+    ],
+    cta: "Cuéntame qué necesitas",
+  },
 };
 
 export default es;

@@ -1,6 +1,8 @@
 import { whatsappUrl } from "@/content/landing/contact";
 import LandingHero from "./LandingHero";
 import LandingNav from "./LandingNav";
+import MethodSection from "./MethodSection";
+import ProblemSection from "./ProblemSection";
 import TrustStrip from "./TrustStrip";
 
 /**
@@ -19,6 +21,8 @@ export default function LandingPage({ content }) {
       <main>
         <LandingHero hero={content.hero} whatsapp={whatsapp} />
         <TrustStrip trust={content.trust} />
+        <ProblemSection problem={content.problem} />
+        <MethodSection method={content.method} />
       </main>
     </div>
   );
