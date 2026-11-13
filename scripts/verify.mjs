@@ -12,8 +12,9 @@
  *      base deben seguir existiendo.
  *   4. Humo: levanta `next start` y comprueba que las rutas respondan. En las
  *      landings comerciales exige además H1 visible sin JS, canonical,
- *      hreflang, noindex (hasta el lanzamiento) y lang por mercado; en la
- *      home, que no aparezca un noindex heredado.
+ *      hreflang, noindex (hasta el lanzamiento) y lang por mercado; y que la
+ *      raíz redirija a la landing (la home editorial solo se publica en
+ *      Netlify, desde main, pero su código igual se protege).
  *
  * El dominio se toma de NEXT_PUBLIC_SITE_URL: usá el mismo valor en el
  * build y en la verificación.
@@ -70,7 +71,8 @@ const ADD_ONLY_FILES = ["lib/seo.js"];
 /* Rutas a comprobar con el servidor levantado. */
 const LANDING_ALTERNATES = { "es-AR": "/diseno-web", "es-ES": "/es/diseno-web", "x-default": "/diseno-web" };
 const ROUTES = [
-  { path: "/", h1: true, index: true },
+  /* En Railway la raíz redirige a la landing (middleware.js) sin perder gclid/utm. */
+  { path: "/?gclid=prueba&utm_source=google", redirect: "/diseno-web?gclid=prueba&utm_source=google" },
   { path: "/robots.txt" },
   { path: "/sitemap.xml" },
   { path: "/diseno-web", h1: true, landing: true, lang: "es-AR" },
@@ -117,7 +119,7 @@ function checkProtected() {
 
 /* ------------------------------------------------------------------ */
 /* Fuentes de la landing: se les exige el estilo de escritura acordado. */
-const LANDING_SOURCES = ["content/landing", "components/landing", "lib/landing.js", "app/(landing)"];
+const LANDING_SOURCES = ["content/landing", "components/landing", "lib/landing.js", "app/(landing)", "middleware.js"];
 
 function checkStyle() {
   section("2 · Estilo de la landing");
@@ -232,15 +234,10 @@ function stop(child) {
 
 const robotsMeta = (body) => (body.match(/<meta name="robots" content="([^"]*)"/i) || [])[1] || "";
 
-/** La home tiene que seguir indexable: un noindex heredado por error la sacaría de Google. */
-function indexProblems(body) {
-  return /noindex/i.test(robotsMeta(body)) ? [`meta robots inesperado: "${robotsMeta(body)}"`] : [];
-}
-
 function landingProblems(r, body) {
   const p = [];
   const site = new URL(siteUrl()).origin;                                       // Next normaliza el host a minúsculas
-  const h1 =body.match(/<h1([^>]*)>([\s\S]*?)<\/h1>/);
+  const h1 = body.match(/<h1([^>]*)>([\s\S]*?)<\/h1>/);
   if (!h1) p.push("sin <h1>");
   else {
     if (HIDING.test(h1[1])) p.push(`el <h1> tiene clases que lo ocultan: ${h1[1].trim()}`);
@@ -275,11 +272,17 @@ async function checkRoutes() {
     const base = `http://localhost:${PORT}`;
     if (!(await waitFor(base))) { fail(`el servidor no respondió:\n${log}`); return; }
     for (const r of ROUTES) {
-      const res = await fetch(base + r.path);
+      const res = await fetch(base + r.path, { redirect: "manual" });
       const body = await res.text();
+      if (r.redirect) {
+        const to = res.headers.get("location") || "";
+        if (res.status !== 307 || !to.endsWith(r.redirect)) fail(`${r.path} → ${res.status} ${to}; se esperaba 307 → ${r.redirect}`);
+        else ok(`${r.path} → 307 ${r.redirect}`);
+        continue;
+      }
       if (res.status !== 200) { fail(`${r.path} → ${res.status}`); continue; }
       if (r.h1 && (body.match(/<h1[\s>]/g) || []).length !== 1) { fail(`${r.path}: se esperaba exactamente un <h1>`); continue; }
-      const problems = r.landing ? landingProblems(r, body) : r.index ? indexProblems(body) : [];
+      const problems = r.landing ? landingProblems(r, body) : [];
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
       else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang" : ""}`);
     }
