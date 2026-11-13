@@ -142,6 +142,7 @@ const es = {
     label: "Servicios e inversión",
     title: "Elige la escala de tu proyecto.",
     intro: "Precios de referencia en euros (EUR). Cada presupuesto se prepara según tu negocio, con alcance, plazos e inversión por escrito.",
+    currency: "EUR",
     fromLabel: "Desde",
     timeLabel: "Plazo",
     listLabel: "Qué abarca",
@@ -150,6 +151,7 @@ const es = {
       {
         name: "Landing page",
         price: "500 €",
+        amount: 500,
         description: "Para necesidades digitales concretas.",
         time: "1-2 semanas",
         items: ["Landing pages", "Lanzamientos", "Nuevos servicios", "Campañas"],
@@ -157,6 +159,7 @@ const es = {
       {
         name: "Web para empresas",
         price: "900 €",
+        amount: 900,
         description: "Para empresas listas para replantear su presencia digital.",
         time: "Según alcance",
         items: ["Rediseño web", "Webs corporativas", "UX/UI", "Desarrollo", "Analítica", "SEO técnico básico"],
@@ -164,6 +167,7 @@ const es = {
       {
         name: "Web a medida",
         price: "1.200 €",
+        amount: 1200,
         description: "Para experiencias digitales más complejas.",
         time: "Según alcance",
         items: ["Integraciones", "CMS", "CRM", "Automatizaciones", "Contenido dinámico", "Interacciones avanzadas"],

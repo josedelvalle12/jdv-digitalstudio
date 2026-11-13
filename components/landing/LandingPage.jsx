@@ -4,6 +4,7 @@ import ContactSection from "./ContactSection";
 import FaqSection from "./FaqSection";
 import LandingFooter from "./LandingFooter";
 import LandingHero from "./LandingHero";
+import LandingJsonLd from "./LandingJsonLd";
 import LandingNav from "./LandingNav";
 import MethodSection from "./MethodSection";
 import MobileBar from "./MobileBar";
@@ -24,6 +25,7 @@ export default function LandingPage({ content }) {
   const whatsapp = whatsappUrl(content.whatsappText);
   return (
     <div className="lp" lang={content.lang} id="top">
+      <LandingJsonLd content={content} />
       <LandingNav nav={content.nav} whatsapp={whatsapp} />
       <main>
         <LandingHero hero={content.hero} whatsapp={whatsapp} />

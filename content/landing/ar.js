@@ -141,6 +141,7 @@ const ar = {
     label: "Servicios e inversión",
     title: "Elegí la escala de tu proyecto.",
     intro: "Precios de referencia en dólares (USD). Cada propuesta se arma según tu negocio, con alcance, plazos e inversión por escrito.",
+    currency: "USD",
     fromLabel: "Desde",
     timeLabel: "Plazo",
     listLabel: "Qué abarca",
@@ -149,6 +150,7 @@ const ar = {
       {
         name: "Landing page",
         price: "USD 500",
+        amount: 500,
         description: "Para necesidades digitales concretas.",
         time: "1-2 semanas",
         items: ["Landing pages", "Lanzamientos", "Nuevos servicios", "Campañas"],
@@ -156,6 +158,7 @@ const ar = {
       {
         name: "Sitio web para empresas",
         price: "USD 900",
+        amount: 900,
         description: "Para empresas listas para replantear su presencia digital.",
         time: "Según alcance",
         items: ["Rediseño web", "Sitios corporativos", "UX/UI", "Desarrollo", "Analytics", "SEO técnico básico"],
@@ -163,6 +166,7 @@ const ar = {
       {
         name: "Sitio a medida",
         price: "USD 1.200",
+        amount: 1200,
         description: "Para experiencias digitales más complejas.",
         time: "Según alcance",
         items: ["Integraciones", "CMS", "CRM", "Automatizaciones", "Contenido dinámico", "Interacciones avanzadas"],

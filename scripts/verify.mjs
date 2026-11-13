@@ -272,6 +272,17 @@ function landingProblems(r, body) {
   for (const slug of ["privacidad", "aviso-legal"]) {
     if (!body.includes(`href="${base}/${slug}"`)) p.push(`falta el enlace a ${base}/${slug}`);
   }
+  const ld = [...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((m) => {
+    try { return JSON.parse(m[1]); } catch { return null; }
+  });
+  if (ld.includes(null)) p.push("hay datos estructurados que no son JSON válido");
+  const service = ld.flatMap((d) => d?.["@graph"] || []).find((n) => n["@type"] === "Service");
+  const code = r.currency === "€" ? "EUR" : "USD";
+  const offers = service?.hasOfferCatalog?.itemListElement || [];
+  if (!service) p.push("falta el dato estructurado Service de la landing");
+  else if (offers.length !== 3 || offers.some((o) => o.priceSpecification?.priceCurrency !== code || !(o.priceSpecification?.minPrice > 0))) {
+    p.push(`el Service debe tener 3 ofertas con precio en ${code}`);
+  }
   if (/googletagmanager\.com|google-analytics\.com/.test(body)) p.push("el HTML inicial carga etiquetas de Google antes de declarar el consentimiento");
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
   const visible = markup.replace(/<[^>]+>/g, " ");
@@ -305,6 +316,17 @@ async function checkContactApi(base) {
       fail(`/api/contacto · ${c.name}: hubo ${res.status} ${location}`);
     } else ok(`/api/contacto · ${c.name}`);
   }
+}
+
+async function checkSitemap(base) {
+  const site = new URL(siteUrl()).origin;
+  const xml = await (await fetch(`${base}/sitemap.xml`)).text();
+  const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const indexable = /LANDING_INDEXABLE\s*=\s*true/.test(readFileSync(join(ROOT, "lib", "landing.js"), "utf8"));
+  const expected = indexable ? [`${site}/diseno-web`, `${site}/es/diseno-web`] : [];
+  const same = locs.length === expected.length && expected.every((u) => locs.includes(u));
+  if (!same) fail(`sitemap.xml: se esperaba [${expected.join(", ")}] y hay [${locs.join(", ")}]`);
+  else ok(`sitemap.xml: ${indexable ? "lista las dos landings y no la raíz" : "vacío mientras las landings tengan noindex"}`);
 }
 
 async function checkRoutes() {
@@ -342,6 +364,7 @@ async function checkRoutes() {
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
       else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : r.legal ? " · datos del titular · noindex" : r.noindex ? " · noindex" : ""}`);
     }
+    await checkSitemap(base);
     await checkContactApi(base);
     // Los avisos propios del formulario ([contacto]) son esperables en la prueba; cualquier otro error, no.
     const serverLog = log.split("\n").filter((l) => !l.includes("[contacto]")).join("\n");
