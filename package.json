@@ -4,7 +4,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "verify": "next build && node scripts/verify.mjs",
+    "verify:only": "node scripts/verify.mjs"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",
