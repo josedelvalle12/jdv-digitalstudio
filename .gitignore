@@ -27,3 +27,8 @@ next-env.d.ts
 
 # editor / tooling
 .claude/
+
+# documentos de clientes (contratos y propuestas): nunca al repositorio
+/contracts/
+/contrato/
+/propuestas/

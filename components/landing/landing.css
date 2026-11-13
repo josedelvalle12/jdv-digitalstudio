@@ -1,0 +1,48 @@
+/*
+  Estilos de la landing comercial. Solo se cargan en /diseno-web y
+  /es/diseno-web (los importa app/(landing)/layout.jsx).
+
+  Reglas:
+  - Toda clase lleva el prefijo lp-.
+  - Se reutilizan los tokens de app/globals.css (colores y fuentes) sin
+    redefinirlos.
+  - Nada de esto debe depender de JavaScript para mostrarse.
+*/
+
+.lp {
+  --lp-gutter: clamp(1rem, 4vw, 3rem);
+  --lp-max: 72rem;
+}
+
+.lp-hero {
+  max-width: var(--lp-max);
+  margin: 0 auto;
+  padding: clamp(5rem, 14vh, 9rem) var(--lp-gutter) clamp(3rem, 8vh, 5rem);
+}
+
+.lp-eyebrow {
+  font-family: var(--font-mono);
+  font-size: .8125rem;              /* 13px: mínimo legible para texto de apoyo */
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: rgb(var(--ink) / .72);     /* ≥ 4,5:1 sobre paper */
+}
+
+.lp-title {
+  margin-top: 1.25rem;
+  max-width: 18ch;
+  font-family: var(--font-display);
+  font-weight: var(--display-weight);
+  font-size: clamp(2.25rem, 6vw, 4.75rem);
+  line-height: 1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.lp-lead {
+  margin-top: 1.5rem;
+  max-width: 40rem;
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: rgb(var(--ink) / .8);
+}
