@@ -289,6 +289,7 @@ const ar = {
     rights: "Todos los derechos reservados.",
     privacy: "Política de privacidad",
     legal: "Aviso legal",
+    consent: "Preferencias de medición",
   },
 
   /** Textos legales: /privacidad y /aviso-legal. */

@@ -296,6 +296,7 @@ const es = {
     rights: "Todos los derechos reservados.",
     privacy: "Política de privacidad",
     legal: "Aviso legal",
+    consent: "Configurar cookies",
   },
 
   /** Textos legales: /privacidad y /aviso-legal. */

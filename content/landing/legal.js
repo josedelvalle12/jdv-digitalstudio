@@ -65,6 +65,7 @@ export const legalAr = {
         list: [
           "Resend: envía a mi casilla el correo con lo que completaste en el formulario.",
           "Google (Gmail): recibo y respondo mis correos.",
+          "Google (Analytics y Ads): medición de visitas y de anuncios, según tu elección en el aviso de cookies.",
           "Railway: aloja este sitio y procesa el envío del formulario.",
           "WhatsApp (Meta): solo si me escribís por ese canal.",
         ],
@@ -88,8 +89,9 @@ export const legalAr = {
       {
         h: "Cookies y medición",
         p: [
-          "Por ahora este sitio no usa cookies propias ni herramientas de medición. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abrís la página.",
-          "Si incorporo herramientas de medición, como Google Analytics o Google Ads, voy a actualizar esta política antes de activarlas.",
+          "Este sitio usa Google Analytics y Google Ads para medir las visitas, saber desde qué anuncio llegaste y si enviaste una consulta. Estas herramientas usan cookies y reciben datos como tu dirección IP, el dispositivo y las páginas que visitás.",
+          "Te aviso con un cartel al entrar. Podés no permitirlo en ese momento o cambiar tu decisión cuando quieras desde “Preferencias de medición”, en el pie de la página. Si no lo permitís, no se instalan cookies de medición ni de publicidad; Google puede recibir señales de visita sin cookies ni identificadores, que usa para estimar resultados agregados.",
+          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abrís la página.",
         ],
       },
       {
@@ -212,6 +214,7 @@ export const legalEs = {
         list: [
           "Resend: envía a mi casilla el correo con lo que has rellenado en el formulario.",
           "Google (Gmail): recibo y respondo mis correos.",
+          "Google (Analytics y Ads): medición de visitas y de anuncios, según tu elección en el aviso de cookies.",
           "Railway: aloja este sitio y procesa el envío del formulario.",
           "WhatsApp (Meta): solo si me escribes por ese canal.",
         ],
@@ -241,8 +244,9 @@ export const legalEs = {
       {
         h: "Cookies y medición",
         p: [
-          "Por ahora este sitio no usa cookies propias ni herramientas de medición. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abres la página.",
-          "Si incorporo herramientas de medición, como Google Analytics o Google Ads, te pediré tu consentimiento antes de activarlas y actualizaré esta política.",
+          "Este sitio usa Google Analytics y Google Ads para medir las visitas, saber desde qué anuncio llegas y si envías una consulta. Estas herramientas usan cookies y reciben datos como tu dirección IP, el dispositivo y las páginas que visitas.",
+          "Solo las activo si las aceptas en el aviso que aparece al entrar. Si las rechazas o ignoras el aviso, no se instalan cookies de medición ni de publicidad; Google puede recibir señales de visita sin cookies ni identificadores, que usa para estimar resultados agregados. Puedes cambiar tu decisión cuando quieras desde “Configurar cookies”, en el pie de la página.",
+          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abres la página.",
         ],
       },
       {

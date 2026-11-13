@@ -1,4 +1,5 @@
 import { CONTACT } from "@/content/landing/contact";
+import { ANALYTICS_ENABLED } from "@/lib/analytics";
 
 /** Pie con identificación del negocio, contacto y enlaces legales. */
 export default function LandingFooter({ content, whatsapp }) {
@@ -16,6 +17,9 @@ export default function LandingFooter({ content, whatsapp }) {
           {whatsapp && <li><a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a></li>}
           <li><a href={`${path}/${legal.privacy.slug}`}>{footer.privacy}</a></li>
           <li><a href={`${path}/${legal.notice.slug}`}>{footer.legal}</a></li>
+          {ANALYTICS_ENABLED && (
+            <li><button type="button" className="lp-footer__btn" data-consent-open>{footer.consent}</button></li>
+          )}
         </ul>
         <p className="lp-footer__muted lp-footer__rights">
           © {new Date().getFullYear()} JDV Digital Studio. {footer.rights}

@@ -571,6 +571,8 @@
 .lp-footer__muted { color: var(--lp-muted); font-size: .9375rem; }
 .lp-footer__links { display: grid; gap: .6rem; align-content: start; }
 .lp-footer__links a { text-decoration: underline; text-underline-offset: .25em; }
+.lp-footer__btn { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: .25em; }
+.lp-footer__btn:hover { text-decoration-color: rgb(var(--acid)); }
 .lp-footer__links a:hover { text-decoration-color: rgb(var(--acid)); }
 
 /* ---------- Barra fija mobile ---------- */
@@ -588,6 +590,30 @@
 }
 .lp-thanks .lp-actions { align-items: center; }
 .lp-thanks .lp-link { margin-top: 0; }
+
+/* ---------- Aviso de medición ---------- */
+.lp-consent {
+  position: fixed;
+  z-index: 60;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  max-width: 42rem;
+  display: grid;
+  gap: .85rem;
+  padding: 1rem 1.15rem;
+  background: rgb(var(--paper));
+  border: 1.5px solid rgb(var(--ink));
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgb(var(--ink) / .18);
+  font-size: .9375rem;
+  line-height: 1.5;
+  min-height: 0;
+}
+.lp-consent a { text-decoration: underline; text-underline-offset: .2em; }
+.lp-consent__actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.lp-consent__actions .lp-btn { flex: 1 1 8rem; justify-content: center; }
+@media (min-width: 60rem) { .lp-consent { left: 1.5rem; bottom: 1.5rem; } }
 
 /* ---------- Páginas legales ---------- */
 .lp-doc { padding-block: clamp(3rem, 9vh, 6rem); max-width: 48rem; }

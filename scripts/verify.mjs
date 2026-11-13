@@ -272,6 +272,7 @@ function landingProblems(r, body) {
   for (const slug of ["privacidad", "aviso-legal"]) {
     if (!body.includes(`href="${base}/${slug}"`)) p.push(`falta el enlace a ${base}/${slug}`);
   }
+  if (/googletagmanager\.com|google-analytics\.com/.test(body)) p.push("el HTML inicial carga etiquetas de Google antes de declarar el consentimiento");
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
   const visible = markup.replace(/<[^>]+>/g, " ");
   if (!visible.includes(r.currency)) p.push(`no aparece la moneda del mercado (${r.currency})`);
