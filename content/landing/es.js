@@ -38,7 +38,9 @@ const es = {
   /**
    * Franja de confianza. Cada punto sale del contrato o la propuesta reales:
    * contrato cláusulas 4.2 (pago), 10.1 (soporte) y 11 (titularidad).
-   * Plazos de entrega: pendientes de confirmar, no se publican todavía.
+   * Plazo de landing confirmado por Jose: semana 1 charla sobre el negocio y
+   * propuesta de diseño, semana 2 desarrollo. Los sitios completos dependen
+   * del alcance: su plazo va en cada propuesta, no acá.
    */
   trust: {
     label: "Cómo trabajo",
@@ -48,6 +50,7 @@ const es = {
       "Pago en dos partes: al inicio y antes de publicar",
       "14 días de soporte después de publicar",
       "Dominio, hosting y cuentas a tu nombre",
+      "Landing lista en 1–2 semanas",
     ],
   },
 };

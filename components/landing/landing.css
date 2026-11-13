@@ -143,7 +143,7 @@
 }
 .lp-trust__list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));   /* 6 puntos: 3 × 2 */
   gap: .9rem 2rem;
   padding-block: 1.5rem;
 }
@@ -163,6 +163,11 @@
   background: rgb(var(--acid));
   box-shadow: 0 0 0 1.5px rgb(var(--ink));
   transform: translateY(-.1em);
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 60rem) {
+  .lp-trust__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* ---------- Mobile ---------- */
