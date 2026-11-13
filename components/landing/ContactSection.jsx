@@ -26,7 +26,7 @@ export default function ContactSection({ content, whatsapp }) {
             )}
           </div>
         </div>
-        <ContactForm form={form} market={content.market} thanksPath={`${content.path}/gracias`} whatsapp={whatsapp} />
+        <ContactForm form={form} market={content.market} thanksPath={`${content.path}/gracias`} privacyPath={`${content.path}/${content.legal.privacy.slug}`} whatsapp={whatsapp} />
       </div>
     </section>
   );

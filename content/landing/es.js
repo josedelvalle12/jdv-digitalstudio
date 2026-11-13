@@ -5,6 +5,8 @@
  * Regla: solo hechos verificables. Ningún testimonio, cifra ni cliente
  * se redacta acá si no viene de material real.
  */
+import { legalEs } from "./legal";
+
 const es = {
   market: "es",
   lang: "es-ES",
@@ -275,7 +277,8 @@ const es = {
     messagePlaceholder: "Por ejemplo: a qué se dedica tu negocio y qué te gustaría conseguir.",
     submit: "Enviar consulta",
     sending: "Enviando...",
-    privacy: "Uso tus datos solo para responder a tu consulta.",
+    privacy: "Responsable: José Ruben Del Valle Martínez. Finalidad: responder a tu consulta. Derechos de acceso, rectificación y supresión escribiendo a hola@josedelvalle.dev. Más información en la",
+    privacyLink: "política de privacidad",
     error: "No se ha podido enviar la consulta. Inténtalo de nuevo o escríbeme por WhatsApp.",
   },
 
@@ -291,7 +294,12 @@ const es = {
     tagline: "Estudio independiente de Jose Del Valle.",
     location: "Buenos Aires, Argentina",
     rights: "Todos los derechos reservados.",
+    privacy: "Política de privacidad",
+    legal: "Aviso legal",
   },
+
+  /** Textos legales: /privacidad y /aviso-legal. */
+  legal: legalEs,
 };
 
 export default es;

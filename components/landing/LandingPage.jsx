@@ -37,7 +37,7 @@ export default function LandingPage({ content }) {
         <FaqSection faq={content.faq} />
         <ContactSection content={content} whatsapp={whatsapp} />
       </main>
-      <LandingFooter footer={content.footer} whatsapp={whatsapp} />
+      <LandingFooter content={content} whatsapp={whatsapp} />
       <MobileBar nav={content.nav} whatsapp={whatsapp} />
     </div>
   );

@@ -1,7 +1,8 @@
 import { CONTACT } from "@/content/landing/contact";
 
-/** Pie con identificación del negocio y contacto. Los enlaces legales llegan en la etapa 7. */
-export default function LandingFooter({ footer, whatsapp }) {
+/** Pie con identificación del negocio, contacto y enlaces legales. */
+export default function LandingFooter({ content, whatsapp }) {
+  const { footer, legal, path } = content;
   return (
     <footer className="lp-footer">
       <div className="lp-wrap lp-footer__inner">
@@ -13,6 +14,8 @@ export default function LandingFooter({ footer, whatsapp }) {
         <ul className="lp-footer__links">
           {CONTACT.email && <li><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></li>}
           {whatsapp && <li><a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a></li>}
+          <li><a href={`${path}/${legal.privacy.slug}`}>{footer.privacy}</a></li>
+          <li><a href={`${path}/${legal.notice.slug}`}>{footer.legal}</a></li>
         </ul>
         <p className="lp-footer__muted lp-footer__rights">
           © {new Date().getFullYear()} JDV Digital Studio. {footer.rights}

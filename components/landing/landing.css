@@ -562,6 +562,7 @@
 .lp-form__submit { width: 100%; }
 .lp-form__submit:disabled { opacity: .6; cursor: progress; }
 .lp-form__privacy { font-size: .875rem; line-height: 1.5; color: var(--lp-muted); }
+.lp-form__privacy a { text-decoration: underline; text-underline-offset: .2em; color: inherit; }
 
 /* ---------- Pie ---------- */
 .lp-footer { background: rgb(var(--ink)); color: rgb(var(--paper)); --lp-muted: rgb(var(--paper) / .72); --c-fg: var(--paper); }
@@ -587,6 +588,18 @@
 }
 .lp-thanks .lp-actions { align-items: center; }
 .lp-thanks .lp-link { margin-top: 0; }
+
+/* ---------- Páginas legales ---------- */
+.lp-doc { padding-block: clamp(3rem, 9vh, 6rem); max-width: 48rem; }
+.lp-doc .lp-title { max-width: none; margin-top: 0; font-size: clamp(2rem, 5vw, 3rem); }
+.lp-doc__meta { margin-top: .75rem; font-size: .9375rem; color: var(--lp-muted); }
+.lp-doc .lp-lead { margin-top: 1.5rem; }
+.lp-doc__sec { margin-top: 2.25rem; }
+.lp-doc__h { font-size: 1.25rem; font-weight: 600; line-height: 1.3; margin-bottom: .6rem; }
+.lp-doc__sec p, .lp-doc__sec li { line-height: 1.65; }
+.lp-doc__sec p + p, .lp-doc__sec ul + p, .lp-doc__sec p + ul { margin-top: .75rem; }
+.lp-doc__sec ul { padding-left: 1.25rem; list-style: disc; }
+.lp-doc > p:last-child { margin-top: 3rem; }
 
 /* ---------- Desktop ---------- */
 @media (min-width: 60rem) {

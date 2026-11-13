@@ -5,6 +5,8 @@
  * Regla: solo hechos verificables. Ningún testimonio, cifra ni cliente
  * se redacta acá si no viene de material real.
  */
+import { legalAr } from "./legal";
+
 const ar = {
   market: "ar",
   lang: "es-AR",
@@ -268,7 +270,8 @@ const ar = {
     messagePlaceholder: "Por ejemplo: a qué se dedica tu negocio y qué te gustaría lograr.",
     submit: "Enviar consulta",
     sending: "Enviando...",
-    privacy: "Uso tus datos solo para responder tu consulta.",
+    privacy: "Al enviar, aceptás que use tus datos solo para responder tu consulta. Más información en la",
+    privacyLink: "política de privacidad",
     error: "No se pudo enviar la consulta. Probá de nuevo o escribime por WhatsApp.",
   },
 
@@ -284,7 +287,12 @@ const ar = {
     tagline: "Estudio independiente de Jose Del Valle.",
     location: "Buenos Aires, Argentina",
     rights: "Todos los derechos reservados.",
+    privacy: "Política de privacidad",
+    legal: "Aviso legal",
   },
+
+  /** Textos legales: /privacidad y /aviso-legal. */
+  legal: legalAr,
 };
 
 export default ar;

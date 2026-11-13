@@ -7,7 +7,7 @@ import { useState } from "react";
  * con #contacto-error). Con JavaScript se envía sin recargar y, si sale
  * bien, lleva a la misma página de gracias.
  */
-export default function ContactForm({ form, market, thanksPath, whatsapp }) {
+export default function ContactForm({ form, market, thanksPath, privacyPath, whatsapp }) {
   const [state, setState] = useState("idle"); // idle | sending | error
 
   async function onSubmit(event) {
@@ -82,7 +82,9 @@ export default function ContactForm({ form, market, thanksPath, whatsapp }) {
         {state === "sending" ? form.sending : form.submit}
         <span className="lp-btn__dot" aria-hidden="true" />
       </button>
-      <p className="lp-form__privacy">{form.privacy}</p>
+      <p className="lp-form__privacy">
+        {form.privacy} <a href={privacyPath}>{form.privacyLink}</a>.
+      </p>
     </form>
   );
 }

@@ -79,6 +79,10 @@ const ROUTES = [
   { path: "/es/diseno-web", h1: true, landing: true, lang: "es-ES", currency: "€", foreign: "USD" },
   { path: "/diseno-web/gracias", h1: true, noindex: true },
   { path: "/es/diseno-web/gracias", h1: true, noindex: true },
+  { path: "/diseno-web/privacidad", h1: true, noindex: true, legal: true },
+  { path: "/diseno-web/aviso-legal", h1: true, noindex: true, legal: true },
+  { path: "/es/diseno-web/privacidad", h1: true, noindex: true, legal: true },
+  { path: "/es/diseno-web/aviso-legal", h1: true, noindex: true, legal: true },
   { path: "/landing/estudio-aduanero-antes.webp" },
   { path: "/landing/estudio-aduanero-despues.webp" },
   { path: "/_next/image?url=%2Flanding%2Festudio-aduanero-despues.webp&w=1200&q=75" },
@@ -264,6 +268,10 @@ function landingProblems(r, body) {
   const ids = new Set([...markup.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
   const pending = [...new Set([...markup.matchAll(/href="#([^"]+)"/g)].map((m) => m[1]))].filter((id) => !ids.has(id));
   if (pending.length) warn(`${r.path}: enlaces internos sin destino todavía: #${pending.join(", #")}`);
+  const base = r.path.replace(/\/$/, "");
+  for (const slug of ["privacidad", "aviso-legal"]) {
+    if (!body.includes(`href="${base}/${slug}"`)) p.push(`falta el enlace a ${base}/${slug}`);
+  }
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
   const visible = markup.replace(/<[^>]+>/g, " ");
   if (!visible.includes(r.currency)) p.push(`no aparece la moneda del mercado (${r.currency})`);
@@ -325,8 +333,13 @@ async function checkRoutes() {
       if (r.h1 && (body.match(/<h1[\s>]/g) || []).length !== 1) { fail(`${r.path}: se esperaba exactamente un <h1>`); continue; }
       if (r.noindex && !/noindex/i.test(robotsMeta(body))) { fail(`${r.path}: se esperaba noindex`); continue; }
       const problems = r.landing ? landingProblems(r, body) : [];
+      if (r.legal) {
+        for (const needle of ["20-43574906-3", "Del Valle Martínez", "Av. Directorio 2351"]) {
+          if (!body.includes(needle)) problems.push(`falta el dato del titular: ${needle}`);
+        }
+      }
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
-      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : r.noindex ? " · noindex" : ""}`);
+      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : r.legal ? " · datos del titular · noindex" : r.noindex ? " · noindex" : ""}`);
     }
     await checkContactApi(base);
     // Los avisos propios del formulario ([contacto]) son esperables en la prueba; cualquier otro error, no.
