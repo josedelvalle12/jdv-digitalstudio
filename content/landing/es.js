@@ -1,5 +1,5 @@
 /**
- * Copy de la landing comercial — España.
+ * Copy de la landing comercial - España.
  * Tuteo, precios en EUR. Ruta: /es/diseno-web
  *
  * Regla: solo hechos verificables. Ningún testimonio, cifra ni cliente
@@ -23,7 +23,7 @@ const es = {
   },
 
   hero: {
-    eyebrow: "Diseño y desarrollo web · Google Ads — Estudio independiente",
+    eyebrow: "Diseño y desarrollo web · Google Ads - Estudio independiente",
     title: "Diseño web para empresas que necesitan más clientes, no solo una web bonita.",
     subtitle:
       "Diseño y desarrollo tu web para que explique bien lo que haces y lleve a cada visita a contactarte. Y si quieres tráfico desde el primer día, también configuro y gestiono tus campañas de Google Ads.",
@@ -50,7 +50,7 @@ const es = {
       "Pago en dos partes: al inicio y antes de publicar",
       "14 días de soporte después de publicar",
       "Dominio, hosting y cuentas a tu nombre",
-      "Landing lista en 1–2 semanas",
+      "Landing lista en 1-2 semanas",
     ],
   },
 };

@@ -6,10 +6,11 @@
  * seguridad. Se ejecuta DESPUÉS de `next build` (ver `npm run verify`).
  *
  *   1. Zonas protegidas: la home editorial no puede cambiar respecto de `main`.
- *   2. Regresión de la home: el HTML prerenderizado de "/" (normalizado) debe
+ *   2. Estilo: sin guiones largos en los archivos de la landing.
+ *   3. Regresión de la home: el HTML prerenderizado de "/" (normalizado) debe
  *      ser idéntico a la línea de base, y todas las reglas CSS de la línea de
  *      base deben seguir existiendo.
- *   3. Humo: levanta `next start` y comprueba que las rutas respondan. En las
+ *   4. Humo: levanta `next start` y comprueba que las rutas respondan. En las
  *      landings comerciales exige además H1 visible sin JS, canonical,
  *      hreflang, noindex (hasta el lanzamiento) y lang por mercado; en la
  *      home, que no aparezca un noindex heredado.
@@ -112,6 +113,24 @@ function checkProtected() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Fuentes de la landing: se les exige el estilo de escritura acordado. */
+const LANDING_SOURCES = ["content/landing", "components/landing", "lib/landing.js", "app/(landing)"];
+
+function checkStyle() {
+  section("2 · Estilo de la landing");
+  const files = git("ls-files", "--cached", "--others", "--exclude-standard", "--", ...LANDING_SOURCES)
+    .split("\n").filter(Boolean);
+  const bad = [];
+  for (const f of files) {
+    readFileSync(join(ROOT, f), "utf8").split("\n").forEach((line, i) => {
+      if (/[–—]/.test(line)) bad.push(`${f}:${i + 1}: ${line.trim()}`);
+    });
+  }
+  if (bad.length) fail(`guiones largos (en dash / em dash): usar el guion normal "-":\n    ${bad.join("\n    ")}`);
+  else ok(`sin guiones largos (${files.length} archivos)`);
+}
+
+/* ------------------------------------------------------------------ */
 const siteUrl = () => (process.env.NEXT_PUBLIC_SITE_URL || "https://REEMPLAZAR-CON-TU-DOMINIO.com").replace(/\/$/, "");
 const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -163,7 +182,7 @@ function cssRules(css, prefix = "") {
 }
 
 function checkHomeRegression() {
-  section("2 · Regresión de la home (HTML prerenderizado + CSS)");
+  section("3 · Regresión de la home (HTML prerenderizado + CSS)");
   const html = homeHtml();
   const norm = normalizeHtml(html);
   const css = homeCss(html);
@@ -243,7 +262,7 @@ function landingProblems(r, body) {
 }
 
 async function checkRoutes() {
-  section(`3 · Humo sobre next start (puerto ${PORT})`);
+  section(`4 · Humo sobre next start (puerto ${PORT})`);
   const nextBin = join(ROOT, "node_modules", "next", "dist", "bin", "next");
   const child = spawn(process.execPath, [nextBin, "start", "-p", String(PORT)], { cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] });
   let log = "";
@@ -273,6 +292,7 @@ if (UPDATE && !clean) {
   console.log("\nNo se actualiza la línea de base: la home tiene cambios respecto de main.");
   process.exit(1);
 }
+if (!UPDATE) checkStyle();
 try { checkHomeRegression(); } catch (e) { fail(e.message); }
 if (!UPDATE) await checkRoutes();
 

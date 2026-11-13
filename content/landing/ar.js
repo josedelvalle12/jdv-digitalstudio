@@ -1,5 +1,5 @@
 /**
- * Copy de la landing comercial — Argentina.
+ * Copy de la landing comercial - Argentina.
  * Voseo, precios en USD. Ruta: /diseno-web
  *
  * Regla: solo hechos verificables. Ningún testimonio, cifra ni cliente
@@ -23,7 +23,7 @@ const ar = {
   },
 
   hero: {
-    eyebrow: "Diseño y desarrollo web · Google Ads — Estudio independiente",
+    eyebrow: "Diseño y desarrollo web · Google Ads - Estudio independiente",
     title: "Diseño web para empresas que necesitan más consultas, no solo una página linda.",
     subtitle:
       "Diseño y desarrollo tu sitio para que explique bien lo que hacés y lleve a cada visitante a contactarte. Y si querés tráfico desde el primer día, también configuro y gestiono tus campañas de Google Ads.",
@@ -50,7 +50,7 @@ const ar = {
       "Pago en dos partes: al inicio y antes de publicar",
       "14 días de soporte después de publicar",
       "Dominio, hosting y cuentas a tu nombre",
-      "Landing lista en 1–2 semanas",
+      "Landing lista en 1-2 semanas",
     ],
   },
 };
