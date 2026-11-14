@@ -161,7 +161,7 @@ const es = {
         price: "900 €",
         amount: 900,
         description: "Para empresas listas para replantear su presencia digital.",
-        time: "Según alcance",
+        time: "3-4 semanas",
         items: ["Rediseño web", "Webs corporativas", "UX/UI", "Desarrollo", "Analítica", "SEO técnico básico"],
       },
       {
