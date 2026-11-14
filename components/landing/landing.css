@@ -328,9 +328,7 @@
   display: flex;
   flex-direction: column;
   padding: 1.75rem;
-  border: 1px solid var(--lp-line);
   border-radius: 1rem;
-  background: rgb(var(--paper));
 }
 .lp-tier__desc { margin-top: .5rem; line-height: 1.5; color: var(--lp-muted); }
 .lp-tier__price {
@@ -377,13 +375,25 @@
 .lp-addons { display: grid; gap: 1rem; margin-top: 1rem; }
 .lp-addon {
   padding: 1.5rem 1.75rem;
-  border: 1px dashed rgb(var(--ink) / .35);
+  border: 1px dashed rgb(var(--paper) / .4);
   border-radius: 1rem;
 }
 .lp-addon__head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 .lp-addon__desc { margin-top: .6rem; line-height: 1.55; }
 .lp-addon__note { margin-top: .6rem; font-size: .9375rem; line-height: 1.5; color: var(--lp-muted); }
 .lp-services__foot { margin-top: 2.5rem; max-width: 36rem; color: var(--lp-muted); }
+
+/* Tarjetas oscuras (paquetes y complementos): destacan sobre el fondo claro de la sección. */
+.lp-tier,
+.lp-addon {
+  background: rgb(var(--ink));
+  color: rgb(var(--paper));
+  --lp-muted: rgb(var(--paper) / .72);               /* ≈ 10:1 sobre ink */
+  --lp-line: rgb(var(--paper) / .18);
+}
+.lp-tier__cta { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
+.lp-tier__cta:hover { background: rgb(var(--paper)); border-color: rgb(var(--paper)); color: rgb(var(--ink)); }
+.lp-addon .lp-tag { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
 
 /* ---------- Proceso ---------- */
 .lp-process { border-top: 1px solid var(--lp-line); }
@@ -634,6 +644,7 @@
   .lp-compare { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lp-case { grid-template-columns: 5fr 7fr; gap: 4rem; }
   .lp-tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+  .lp-tier__desc { min-height: 3em; }                  /* precios alineados entre tarjetas */
   .lp-addons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
   .lp-process__steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; }
   .lp-process__step { grid-template-columns: 1fr; align-content: start; }
