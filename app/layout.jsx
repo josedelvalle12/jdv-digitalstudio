@@ -1,3 +1,4 @@
+import { Geist, Geist_Mono } from "next/font/google";
 import "./fonts.css";
 import "./globals.css";
 import { SITE_URL, SITE_NAME, SITE_TITLE, SITE_DESCRIPTION, LOCALE, getStructuredData } from "@/lib/seo";
@@ -29,25 +30,25 @@ export const metadata = {
   robots: { index: true, follow: true },
 };
 
+/* Geist y Geist Mono se descargan al compilar y se sirven desde el propio dominio. */
+const geist = Geist({ subsets: ["latin"], display: "swap", variable: "--font-geist" });
+const geistMono = Geist_Mono({ subsets: ["latin"], display: "swap", variable: "--font-geist-mono" });
+
 export const viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 /*
   TIPOGRAFÍA
-  Fuentes temporales (Google Fonts). Para probar Satoshi / General Sans /
+  Texto y etiquetas: Geist y Geist Mono vía next/font (autoalojadas, sin pedir
+  nada a Google en cada visita). Títulos: Satoshi, local. Para probar Satoshi / General Sans /
   Neue Montreal localmente: agregá los .woff2 en /public/fonts, declaralos
   en app/fonts.css (hay ejemplos comentados) y cambiá --font-display /
   --font-body en app/globals.css. No hace falta tocar ningún componente.
 */
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${geist.variable} ${geistMono.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=Geist:wght@300..700&family=Geist+Mono:wght@400..600&display=swap"
-        />
+        <link rel="preload" href="/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getStructuredData()) }} />
       </head>
       <body>{children}</body>

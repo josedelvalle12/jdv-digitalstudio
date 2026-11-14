@@ -91,7 +91,7 @@ export const legalAr = {
         p: [
           "Este sitio usa Google Analytics y Google Ads para medir las visitas, saber desde qué anuncio llegaste y si enviaste una consulta. Estas herramientas usan cookies y reciben datos como tu dirección IP, el dispositivo y las páginas que visitás.",
           "Te aviso con un cartel al entrar. Podés no permitirlo en ese momento o cambiar tu decisión cuando quieras desde “Preferencias de medición”, en el pie de la página. Si no lo permitís, no se instalan cookies de medición ni de publicidad; Google puede recibir señales de visita sin cookies ni identificadores, que usa para estimar resultados agregados.",
-          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abrís la página.",
+          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing.",
         ],
       },
       {
@@ -246,7 +246,7 @@ export const legalEs = {
         p: [
           "Este sitio usa Google Analytics y Google Ads para medir las visitas, saber desde qué anuncio llegas y si envías una consulta. Estas herramientas usan cookies y reciben datos como tu dirección IP, el dispositivo y las páginas que visitas.",
           "Solo las activo si las aceptas en el aviso que aparece al entrar. Si las rechazas o ignoras el aviso, no se instalan cookies de medición ni de publicidad; Google puede recibir señales de visita sin cookies ni identificadores, que usa para estimar resultados agregados. Puedes cambiar tu decisión cuando quieras desde “Configurar cookies”, en el pie de la página.",
-          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing. Las tipografías se cargan desde Google Fonts, por lo que Google recibe tu dirección IP cuando abres la página.",
+          "No uso estas herramientas para mostrarte publicidad personalizada ni para crear listas de remarketing.",
         ],
       },
       {

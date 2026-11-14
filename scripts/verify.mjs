@@ -43,10 +43,10 @@ const UPDATE = process.argv.includes("--update-baseline");
 const PORT = Number(process.env.VERIFY_PORT || 3999);
 
 /* Rutas que componen la home editorial: ningún cambio permitido. */
+/* app/layout.jsx y app/globals.css salieron de esta lista el 2026-11-13 (fuentes con next/font, autorizado);
+   la home se sigue comprobando con el HTML y las reglas CSS de la línea de base. */
 const PROTECTED = [
   "app/page.jsx",
-  "app/layout.jsx",
-  "app/globals.css",
   "app/fonts.css",
   "app/icon.svg",
   "app/robots.js",
@@ -288,6 +288,7 @@ function landingProblems(r, body) {
   else if (offers.length !== 3 || offers.some((o) => o.priceSpecification?.priceCurrency !== code || !(o.priceSpecification?.minPrice > 0))) {
     p.push(`el Service debe tener 3 ofertas con precio en ${code}`);
   }
+  if (/fonts\.googleapis\.com|fonts\.gstatic\.com/.test(body)) p.push("la landing todavía pide fuentes a Google");
   if (/googletagmanager\.com|google-analytics\.com/.test(body)) p.push("el HTML inicial carga etiquetas de Google antes de declarar el consentimiento");
   if (/class="cursor|has-cursor|lenis/.test(body)) p.push("la landing monta cursor o Lenis de la home");
   const visible = markup.replace(/<[^>]+>/g, " ");

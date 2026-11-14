@@ -23,8 +23,8 @@
   --font-fallback: ui-sans-serif, system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
   /* --font-display: "Bricolage Grotesque", "Geist", var(--font-fallback); */
   --font-display: "Satoshi", var(--font-fallback);
-  --font-body: "Geist", var(--font-fallback);
-  --font-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-body: var(--font-geist), var(--font-fallback);
+  --font-mono: var(--font-geist-mono), ui-monospace, "SFMono-Regular", Menlo, monospace;
   --display-weight: 560;
   --display-stretch: 100%;
   --display-tracking: -0.048em;
