@@ -177,13 +177,13 @@ const es = {
     addons: [
       {
         name: "Google Ads",
-        price: "A consultar",
+        price: "250 a 400 € al mes",
         description: "Configuración de campañas de búsqueda y del seguimiento de conversiones, y gestión mensual con informe.",
-        note: "La inversión en anuncios la pagas aparte, directamente a Google, desde tu propia cuenta.",
+        note: "La puesta en marcha se cobra aparte, una sola vez: 250 a 400 €. La inversión en anuncios la pagas directamente a Google, desde tu propia cuenta.",
       },
       {
         name: "Plan mensual",
-        price: "A consultar",
+        price: "80 a 120 € al mes",
         description: "Mantenimiento de la web, cambios menores, revisión de datos y mejoras, con un informe cada mes.",
       },
     ],

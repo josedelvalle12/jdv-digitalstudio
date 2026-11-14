@@ -243,6 +243,9 @@ function stop(child) {
   } else child.kill("SIGTERM");
 }
 
+/* Estado de lanzamiento: lib/landing.js manda; el verificador lo lee, no lo duplica. */
+const INDEXABLE = /LANDING_INDEXABLE\s*=\s*true/.test(readFileSync(join(ROOT, "lib", "landing.js"), "utf8"));
+
 const robotsMeta = (body) => (body.match(/<meta name="robots" content="([^"]*)"/i) || [])[1] || "";
 
 function landingProblems(r, body) {
@@ -260,7 +263,9 @@ function landingProblems(r, body) {
     const re = new RegExp(`<link rel="alternate" hreflang="${lang}" href="${escapeRe(site + path)}"`, "i");
     if (!re.test(body)) p.push(`falta hreflang ${lang} → ${site + path}`);
   }
-  if (!/noindex/i.test(robotsMeta(body))) p.push(`se esperaba noindex hasta el lanzamiento, hay "${robotsMeta(body)}"`);
+  const blocked = /noindex/i.test(robotsMeta(body));
+  if (INDEXABLE && blocked) p.push(`la landing está lanzada pero lleva "${robotsMeta(body)}"`);
+  if (!INDEXABLE && !blocked) p.push(`se esperaba noindex hasta el lanzamiento, hay "${robotsMeta(body)}"`);
   if (!new RegExp(`<div class="lp" lang="${r.lang}"`).test(body)) p.push(`falta lang="${r.lang}" en el contenedor .lp`);
   const markup = body.replace(/<script[\s\S]*?<\/script>/g, "");
   const hidden = [...markup.matchAll(/<[a-z0-9]+[^>]*class="([^"]*)"/g)].map((m) => m[1]).filter((c) => HIDING.test(c));
@@ -322,7 +327,7 @@ async function checkSitemap(base) {
   const site = new URL(siteUrl()).origin;
   const xml = await (await fetch(`${base}/sitemap.xml`)).text();
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  const indexable = /LANDING_INDEXABLE\s*=\s*true/.test(readFileSync(join(ROOT, "lib", "landing.js"), "utf8"));
+  const indexable = INDEXABLE;
   const expected = indexable ? [`${site}/diseno-web`, `${site}/es/diseno-web`] : [];
   const same = locs.length === expected.length && expected.every((u) => locs.includes(u));
   if (!same) fail(`sitemap.xml: se esperaba [${expected.join(", ")}] y hay [${locs.join(", ")}]`);
@@ -354,7 +359,10 @@ async function checkRoutes() {
       }
       if (res.status !== 200) { fail(`${r.path} → ${res.status}`); continue; }
       if (r.h1 && (body.match(/<h1[\s>]/g) || []).length !== 1) { fail(`${r.path}: se esperaba exactamente un <h1>`); continue; }
-      if (r.noindex && !/noindex/i.test(robotsMeta(body))) { fail(`${r.path}: se esperaba noindex`); continue; }
+      /* gracias: siempre noindex. Legales: siguen el estado de lanzamiento. */
+      const wantBlocked = r.noindex && (!r.legal || !INDEXABLE);
+      if (wantBlocked && !/noindex/i.test(robotsMeta(body))) { fail(`${r.path}: se esperaba noindex`); continue; }
+      if (r.legal && INDEXABLE && /noindex/i.test(robotsMeta(body))) { fail(`${r.path}: lanzada pero lleva noindex`); continue; }
       const problems = r.landing ? landingProblems(r, body) : [];
       if (r.legal) {
         for (const needle of ["20-43574906-3", "Del Valle Martínez", "Av. Directorio 2351"]) {
@@ -362,7 +370,7 @@ async function checkRoutes() {
         }
       }
       if (problems.length) fail(`${r.path}:\n    ${problems.join("\n    ")}`);
-      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · noindex · lang · moneda" : r.legal ? " · datos del titular · noindex" : r.noindex ? " · noindex" : ""}`);
+      else ok(`${r.path} → 200${r.landing ? " · H1 visible sin JS · canonical · hreflang · robots · lang · moneda" : r.legal ? " · datos del titular · robots" : r.noindex ? " · noindex (siempre)" : ""}`);
     }
     await checkSitemap(base);
     await checkContactApi(base);
