@@ -207,7 +207,7 @@ const es = {
 
   about: {
     label: "Quién soy",
-    title: "Pequeño por diseño.",
+    title: "Una sola persona, de la charla al anuncio.",
     text: "Soy Jose Del Valle. Trabajo de forma independiente: la persona con la que hablas es la que diseña y desarrolla tu web, y la que después gestiona tus campañas.",
     facts: [
       ["Base", "Buenos Aires, Argentina"],
