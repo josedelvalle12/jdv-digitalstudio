@@ -26,15 +26,18 @@ export default function ServicesSection({ services }) {
                 <span>{services.timeLabel}</span> {tier.time}
               </p>
               <div className="lp-tier__list">
-                <p className="lp-tier__list-label">{services.listLabel}</p>
+                <p className="lp-tier__list-label">{tier.listLabel ?? services.listLabel}</p>
                 <ul>
                   {tier.items.map((item) => <li key={item}>{item}</li>)}
                 </ul>
+                {tier.note && <p className="lp-tier__note">{tier.note}</p>}
               </div>
               <a className="lp-btn lp-btn--ghost lp-tier__cta" href="#contacto">{services.cta}</a>
             </li>
           ))}
         </ul>
+
+        {services.domainNote && <p className="lp-services__note">{services.domainNote}</p>}
 
         <h3 className="lp-addons__label">{services.addonsLabel}</h3>
         <ul className="lp-addons">

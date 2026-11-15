@@ -362,6 +362,22 @@
 .lp-tier__list li { display: flex; gap: .6rem; line-height: 1.4; }
 .lp-tier__list li::before { content: "+"; font-family: var(--font-mono); color: var(--lp-muted); }
 .lp-tier__cta { margin-top: 2rem; }
+.lp-tier__note {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--lp-line);
+  font-size: .9375rem;
+  line-height: 1.5;
+  color: var(--lp-muted);
+}
+.lp-services__note {
+  margin-top: 1.5rem;
+  max-width: 44rem;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid rgb(var(--acid));
+  background: rgb(var(--stage));
+  line-height: 1.5;
+}
 
 .lp-addons__label {
   margin-top: 3.5rem;
@@ -394,6 +410,43 @@
 .lp-tier__cta { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
 .lp-tier__cta:hover { background: rgb(var(--paper)); border-color: rgb(var(--paper)); color: rgb(var(--ink)); }
 .lp-addon .lp-tag { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
+
+/* ---------- Adquisición (sección oscura, reutiliza .lp-dark y .lp-step) ---------- */
+.lp-acq__channels { display: grid; gap: 1rem; }
+.lp-acq__ch { display: flex; flex-direction: column; gap: .75rem; padding: 1.5rem 1.75rem; border: 1px solid var(--lp-line); border-radius: 1rem; }
+.lp-acq__ch p { line-height: 1.55; color: var(--lp-muted); }
+.lp-acq__label {
+  margin-top: 2.5rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--lp-muted);
+}
+.lp-acq__list { display: grid; margin-top: .75rem; }
+.lp-acq__list li {
+  display: grid;
+  grid-template-columns: 2.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1rem;
+  border-top: 1px solid var(--lp-line);
+  line-height: 1.45;
+}
+.lp-acq__list li::before {
+  content: counter(acq, decimal-leading-zero);
+  counter-increment: acq;
+  padding-top: .15rem;
+  font-family: var(--font-mono);
+  font-size: .8125rem;
+  color: var(--lp-muted);
+}
+.lp-acq__list { counter-reset: acq; }
+.lp-acq__foot { display: grid; gap: 1.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--lp-line); }
+.lp-acq__closing { max-width: 28ch; font-family: var(--font-display); font-weight: var(--display-weight); font-size: clamp(1.25rem, 2.2vw, 1.625rem); line-height: 1.2; letter-spacing: -0.02em; text-wrap: balance; }
+.lp-acq__price { margin-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: .6rem .9rem; }
+.lp-acq__price .lp-tag { background: rgb(var(--acid)); border-color: rgb(var(--acid)); color: rgb(var(--ink)); }
+.lp-acq__price span:last-child { color: var(--lp-muted); }
 
 /* ---------- Proceso ---------- */
 .lp-process { border-top: 1px solid var(--lp-line); }
@@ -645,6 +698,9 @@
   .lp-case { grid-template-columns: 5fr 7fr; gap: 4rem; }
   .lp-tiers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
   .lp-tier__desc { min-height: 3em; }                  /* precios alineados entre tarjetas */
+  .lp-acq__channels { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .lp-acq__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.5rem 4rem; }
+  .lp-acq__foot { grid-template-columns: 1fr auto; align-items: end; }
   .lp-addons { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
   .lp-process__steps { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1.5rem; }
   .lp-process__step { grid-template-columns: 1fr; align-content: start; }

@@ -1,5 +1,6 @@
 import { whatsappUrl } from "@/content/landing/contact";
 import AboutSection from "./AboutSection";
+import AcquisitionSection from "./AcquisitionSection";
 import ContactSection from "./ContactSection";
 import FaqSection from "./FaqSection";
 import LandingFooter from "./LandingFooter";
@@ -34,6 +35,7 @@ export default function LandingPage({ content }) {
         <MethodSection method={content.method} />
         <WorkSection work={content.work} />
         <ServicesSection services={content.services} />
+        {content.acquisition && <AcquisitionSection acquisition={content.acquisition} />}
         <ProcessSection process={content.process} />
         <AboutSection about={content.about} />
         <FaqSection faq={content.faq} />

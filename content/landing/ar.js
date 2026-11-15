@@ -151,34 +151,65 @@ const ar = {
         name: "Landing page",
         price: "USD 500",
         amount: 500,
-        description: "Para necesidades digitales concretas.",
+        description: "Una página diseñada para presentar un producto, servicio o negocio y convertir visitas en consultas.",
         time: "1-2 semanas",
-        items: ["Landing pages", "Lanzamientos", "Nuevos servicios", "Campañas"],
+        items: [
+          "Una única página de entre 5 y 7 secciones",
+          "Diseño visual personalizado",
+          "Estructura de contenido orientada a la conversión",
+          "Desarrollo responsive (móvil, tablet y escritorio)",
+          "Formularios de contacto y/o integración con WhatsApp",
+          "Botones y llamadas a la acción",
+          "Configuración SEO básica",
+          "Publicación y pruebas de funcionamiento",
+        ],
       },
       {
         name: "Sitio web para empresas",
         price: "USD 900",
         amount: 900,
-        description: "Para empresas listas para replantear su presencia digital.",
+        description: "Una presencia digital completa para empresas y negocios que necesitan presentar su propuesta, organizar sus servicios y transmitir confianza.",
         time: "3-4 semanas",
-        items: ["Rediseño web", "Sitios corporativos", "UX/UI", "Desarrollo", "Analytics", "SEO técnico básico"],
+        items: [
+          "Sitio multipágina de entre 4 y 5 páginas",
+          "Diseño visual personalizado",
+          "Arquitectura y organización del contenido",
+          "Inicio, empresa, servicios y contacto, según las necesidades del negocio",
+          "Desarrollo responsive",
+          "Formularios e integraciones de contacto",
+          "Configuración de Analytics",
+          "SEO técnico básico",
+          "Publicación y pruebas de funcionamiento",
+        ],
+        note: "Las páginas adicionales se presupuestan por separado.",
       },
       {
         name: "Sitio a medida",
         price: "USD 1.200",
         amount: 1200,
-        description: "Para experiencias digitales más complejas.",
+        description: "Soluciones digitales personalizadas para proyectos que requieren funcionalidades específicas, integraciones o experiencias más complejas.",
         time: "Según alcance",
-        items: ["Integraciones", "CMS", "CRM", "Automatizaciones", "Contenido dinámico", "Interacciones avanzadas"],
+        listLabel: "Alcance orientativo",
+        items: [
+          "Diseño y desarrollo personalizado",
+          "Arquitectura adaptada al proyecto",
+          "Funcionalidades específicas",
+          "Integraciones con servicios externos",
+          "CMS y contenido dinámico cuando corresponda",
+          "Automatizaciones o conexiones con otros sistemas",
+          "Pruebas y puesta en producción",
+        ],
+        note: "El precio y el plazo se definen según el alcance y la complejidad del proyecto.",
       },
     ],
+    domainNote: "El dominio y el hosting se contratan directamente a nombre del cliente. Te acompañamos en la elección, gestión y configuración para poner tu sitio en funcionamiento.",
     addonsLabel: "Complementos",
     addons: [
       {
         name: "Google Ads",
         price: "USD 150 a 250 por mes",
         description: "Configuración de campañas de búsqueda y del seguimiento de conversiones, y gestión mensual con reporte.",
-        note: "La puesta en marcha se cobra aparte, una sola vez: USD 250 a 400. La inversión en anuncios la pagás directo a Google, desde tu propia cuenta.",
+        note: "La puesta en marcha se cotiza según el alcance. La inversión en anuncios la pagás directo a Google, desde tu propia cuenta.",
       },
       {
         name: "Plan mensual",
@@ -187,6 +218,45 @@ const ar = {
       },
     ],
     footnote: "Cada proyecto se define alrededor del negocio, no de una lista rígida de funcionalidades.",
+  },
+
+  /**
+   * Adquisición digital: continuación natural de la web. Sin promesas de
+   * resultados. Precio de gestión mensual desde USD 150; la puesta en marcha
+   * se cotiza según el alcance (no se publica precio fijo).
+   */
+  acquisition: {
+    label: "Después de publicar",
+    title: "Tu web es el comienzo, no el final.",
+    intro:
+      "Una vez publicada, podemos trabajar en atraer potenciales clientes y convertir tu presencia digital en un canal de adquisición. Analizamos tu negocio y elegimos las plataformas que mejor se adaptan a tus objetivos.",
+    channels: [
+      {
+        name: "Google Ads",
+        text: "Captá personas que ya están buscando tus productos o servicios mediante campañas en Google.",
+      },
+      {
+        name: "Meta Ads",
+        text: "Llegá a nuevas audiencias y promocioná tus productos o servicios mediante campañas en Instagram y Facebook.",
+      },
+    ],
+    loopLabel: "Cómo se complementan",
+    loop: [
+      "La web presenta tu oferta",
+      "Las campañas atraen visitantes potencialmente interesados",
+      "La experiencia de la página facilita el contacto",
+      "La medición permite detectar oportunidades de mejora",
+    ],
+    stepsLabel: "Cómo trabajamos",
+    steps: [
+      "Análisis del negocio y definición de objetivos",
+      "Configuración de campañas, anuncios y medición",
+      "Gestión, seguimiento y optimización continua",
+    ],
+    closing: "Una estrategia adaptada a lo que vendés, a quién querés llegar y a los objetivos de tu negocio.",
+    price: "Gestión mensual desde USD 150",
+    priceNote: "La inversión publicitaria se abona por separado.",
+    cta: "Consultar por campañas",
   },
 
   /** Base: sección Proceso de la home, resumida a 5 pasos. */
